@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Меню Irish pub</title>
+    <!-- Подключение Tailwind CSS через CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts для стильного шрифта -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        /* Анимация для ирландского флага с градиентом */
+        @keyframes gradient-flag-animation {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .container-bg {
+            /* Градиент в цветах ирландского флага */
+            background: linear-gradient(90deg, #009A49, #FFFFFF, #FF7900);
+            background-size: 300% 100%;
+            animation: gradient-flag-animation 10s ease-in-out infinite alternate;
+            background-attachment: fixed;
+        }
+
+        /* Эффект пульсации для логотипа */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .logo-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+
+    <div id="header-bg" class="relative py-16 px-4 sm:px-6 lg:px-8 bg-cover bg-center transition-all duration-1000">
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="relative max-w-7xl mx-auto text-center flex flex-col items-center justify-center">
+            <!-- Место для вашего логотипа -->
+            <img src="https://i.ibb.co/sJp2L0jL/LOGO-BAR.png" alt="Логотип Irish Pub" class="h-48 w-48 mb-8 shadow-xl rounded-full logo-pulse mx-auto">
+            
+            <h1 id="main-title" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-4 text-white">
+                Irish pub
+            </h1>
+            <p id="main-subtitle" class="text-xl sm:text-2xl font-medium text-gray-300">
+                Добро пожаловать в наше меню!
+            </p>
+
+            <!-- Кнопки для переключения языка -->
+            <div class="mt-4 space-x-4">
+                <button id="lang-ru" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">Русский</button>
+                <button id="lang-en" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">English</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="py-12 px-4 sm:px-6 lg:px-8">
+        <div id="menu-container" class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Меню будет сгенерировано здесь с помощью JavaScript -->
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-400 py-6 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <p id="copyright-text">&copy; 2024 Irish pub. Все права защищены.</p>
+            <p id="address-text" class="mt-2 text-sm">
+                Адрес: ул. Алишера Навои, 110 | Телефон: <a href="tel:+99312920088" class="hover:underline">+993-12-92-00-88</a>
+            </p>
+            <!-- Блок с кнопками в подвале -->
+            <div class="mt-4 flex flex-col items-center space-y-4">
+                <a id="route-btn" href="https://yandex.ru/maps/?rtext=~37.94132512397482,58.37591901839282&rtt=auto" target="_blank" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300">
+                    Проложить маршрут
+                </a>
+                <a id="call-btn" href="tel:+99312920088" class="inline-flex items-center space-x-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.058 11.058 0 006.103 6.103l.774-1.548a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.942 18 2 12.058 2 5V3z"></path>
+                    </svg>
+                    <span id="call-text">Позвонить нам</span>
+                </a>
+            </div>
+            <!-- Карта -->
+            <div class="mt-8 rounded-lg overflow-hidden shadow-2xl">
+                <iframe 
+                    src="https://yandex.ru/map-widget/v1/?ll=58.37591901839282,37.94132512397482&z=15" 
+                    width="100%" 
+                    height="400" 
+                    frameborder="0" 
+                    allowfullscreen="true" 
+                    style="border:none;"
+                ></iframe>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Объект с переводами
+            const translations = {
+                ru: {
+                    pageTitle: 'Меню Irish pub',
+                    mainTitle: 'Irish pub',
+                    mainSubtitle: 'Добро пожаловать в наше меню!',
+                    routeBtn: 'Проложить маршрут',
+                    callBtn: 'Позвонить нам',
+                    copyright: '&copy; 2024 Irish pub. Все права защищены.',
+                    address: 'Адрес: ул. Алишера Навои, 110 | Телефон: ',
+                    phoneNumber: '+993-12-92-00-88',
+                    menuTitle: 'Наше меню',
+                    menuItems: [
+                        {
+                            name: 'Бургер "Классик"',
+                            description: 'Сочная говяжья котлета, сыр чеддер, свежие овощи и фирменный соус.',
+                            price: '550 ₽',
+                            image: 'https://placehold.co/400x300/e0e0e0/0d0d0d?text=Burger',
+                            category: 'food'
+                        },
+                        {
+                            name: 'Стейк Рибай',
+                            description: 'Мраморная говядина средней прожарки с гарниром из запеченного картофеля.',
+                            price: '1200 ₽',
+                            image: 'https://placehold.co/400x300/e0e0e0/0d0d0d?text=Steak',
+                            category: 'food'
+                        },
+                        {
+                            name: 'Свиные ребрышки барбекю',
+                            description: 'Нежные свиные ребрышки в сладком соусе барбекю, подаются с салатом.',
+                            price: '850 ₽',
+                            image: 'https://placehold.co/400x300/e0e0e0/0d0d0d?text=Ribs',
+                            category: 'food'
+                        },
+                        {
+                            name: 'Разливное Пиво "Светлое"',
+                            description: 'Свежее светлое пиво с легким солодовым вкусом.',
+                            price: '250 ₽ / 0.5л',
+                            image: 'https://placehold.co/400x300/e0e0e0/0d0d0d?text=Beer',
+                            category: 'drinks'
+                        },
+                        {
+                            name: 'Темный эль',
+                            description: 'Богатый, с нотами карамели и шоколада',
+                            price: '300 ₽ / 0.5л',
+                            image: 'https://placehold.co/400x300/e0e0e0/0d0d0d?text=Dark+Ale',
+                            category: 'drinks'
+                        },
+                        {
+                            name: 'Фирменный лимонад',
+                            description: 'Освежающий микс из цитрусов и мяты',
+                            price: '180 ₽',
+                            image: 'https://placehold.co/400x300/e0e0e0/0d0d0d?text=Lemonade',
+                            category: 'drinks'
+                        }
+                    ]
+                },
+                en: {
+                    pageTitle: 'Irish pub Menu',
+                    mainTitle: 'Irish pub',
+                    mainSubtitle: 'Welcome to our menu!',
+                    routeBtn: 'Get Directions',
+                    callBtn: 'Call us',
+                    copyright: '&copy; 2024 Irish pub. All rights reserved.',
+                    address: 'Address: Alisher Navoi street, 110 | Phone: ',
+                    phoneNumber: '+993-12-92-00-88',
+                    menuTitle: 'Our Menu',
+                    menuItems: [
+                        {
+                            name: 'Classic Burger',
+                            description: 'Juicy beef patty, cheddar cheese, fresh vegetables, and our signature sauce.',
+                            price: '$7.50',
+                            image: 'https://placehold.co/400x300/e0e0e0/0d0d0d?text=Burger',
+                            category: 'food'
+                        },
+                        {
+                            name: 'Ribeye Steak',
+                            description: 'Medium-rare marbled beef with a side of baked potatoes.',
+                            price: '$16.00',
+                            image: 'https://placehold.co/400x300/e0e0e0/0d0d0d?text=Steak',
+                            category: 'food'
+                        },
+                        {
+                            name: 'BBQ Pork Ribs',
+                            description: 'Tender pork ribs in a sweet BBQ sauce, served with a side salad.',
+                            price: '$11.50',
+                            image: 'https://placehold.co/400x300/e0e0e0/0d0d0d?text=Ribs',
+                            category: 'food'
+                        },
+                        {
+                            name: 'Draft Lager',
+                            description: 'Fresh light beer with a crisp malty flavor.',
+                            price: '$3.50 / 0.5l',
+                            image: 'https://placehold.co/400x300/e0e0e0/0d0d0d?text=Beer',
+                            category: 'drinks'
+                        },
+                        {
+                            name: 'Dark Ale',
+                            description: 'Rich, with notes of caramel and chocolate',
+                            price: '$4.00 / 0.5l',
+                            image: 'https://placehold.co/400x300/e0e0e0/0d0d0d?text=Dark+Ale',
+                            category: 'drinks'
+                        },
+                        {
+                            name: 'Signature Lemonade',
+                            description: 'Refreshing mix of citrus and mint',
+                            price: '$2.50',
+                            image: 'https://placehold.co/400x300/e0e0e0/0d0d0d?text=Lemonade',
+                            category: 'drinks'
+                        }
+                    ]
+                }
+            };
+
+            const menuContainer = document.getElementById('menu-container');
+            
+            // Функция для обновления текста на странице
+            function updateLanguage(lang) {
+                const data = translations[lang];
+                document.getElementById('page-title').textContent = data.pageTitle;
+                document.getElementById('main-title').textContent = data.mainTitle;
+                document.getElementById('main-subtitle').textContent = data.mainSubtitle;
+                
+                document.getElementById('route-btn').textContent = data.routeBtn;
+                document.getElementById('call-text').textContent = data.callBtn;
+
+                document.getElementById('copyright-text').innerHTML = data.copyright;
+                document.getElementById('address-text').innerHTML = data.address + `<a href="tel:+99312920088" class="hover:underline">${data.phoneNumber}</a>`;
+                
+                // Очистка и создание меню
+                menuContainer.innerHTML = '';
+                data.menuItems.forEach(item => {
+                    const menuItemElement = document.createElement('div');
+                    menuItemElement.className = 'bg-gray-800 rounded-lg shadow-xl overflow-hidden transform transition-transform duration-300 hover:scale-105';
+                    
+                    menuItemElement.innerHTML = `
+                        <img class="w-full h-48 object-cover object-center" src="${item.image}" alt="${item.name}">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2 text-white">${item.name}</h3>
+                            <p class="text-gray-400 text-sm mb-4">${item.description}</p>
+                            <span class="inline-block bg-green-500 rounded-full px-4 py-1 text-lg font-bold text-white">${item.price}</span>
+                        </div>
+                    `;
+                    menuContainer.appendChild(menuItemElement);
+                });
+            }
+
+            // Обработчики событий для кнопок
+            document.getElementById('lang-ru').addEventListener('click', () => updateLanguage('ru'));
+            document.getElementById('lang-en').addEventListener('click', () => updateLanguage('en'));
+
+            // Установка языка по умолчанию при загрузке
+            updateLanguage('ru');
+
+            // Массив с URL-адресами фоновых изображений
+            const bgImages = [
+                'https://i.ibb.co/67g3707X/link-2024-09-08-18-11-41-340-2.jpg',
+                'https://i.ibb.co/F4PxPGXg/link-2024-09-08-18-11-41-340-1.jpg',
+                'https://i.ibb.co/rK43jYCt/link-2024-09-08-18-11-41-340.jpg' 
+            ];
+            
+            let currentImageIndex = 0;
+            const headerBg = document.getElementById('header-bg');
+
+            // Функция для смены фонового изображения
+            function changeBgImage() {
+                currentImageIndex = (currentImageIndex + 1) % bgImages.length;
+                headerBg.style.backgroundImage = `url('${bgImages[currentImageIndex]}')`;
+            }
+
+            // Запуск смены изображений каждые 2 секунды (2000 миллисекунд)
+            setInterval(changeBgImage, 2000);
+        });
+    </script>
+
+</body>
+</html>
